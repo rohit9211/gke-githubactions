@@ -1,4 +1,4 @@
-FROM node:17-alpine as build-node
+FROM node:10-alpine as build-node
 WORKDIR /ClientApp
 COPY ClientApp/package.json .
 COPY ClientApp/package-lock.json .
@@ -6,7 +6,7 @@ RUN npm install
 COPY ClientApp/ .
 RUN npm run build
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0.101
+FROM mcr.microsoft.com/dotnet/sdk:5.0
 ENV BuildingDocker true
 ARG BUILD_CONFIGURATION=Debug
 ENV ASPNETCORE_ENVIRONMENT=Development
